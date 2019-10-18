@@ -19,7 +19,7 @@ module.exports = function (app) {
                 }
 
                 const user = rows;
-                let ret = bcrypt.compareSync(password, user.password)
+                let ret = bcrypt.compare(password, user.password)
                 if (ret) {
                     return done(null, user)
                 }
