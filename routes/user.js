@@ -35,8 +35,11 @@ router.post('/login', (req, res, next) => {
         }
 
         req.logIn(user, err => {
-            const token = jwt.sign(user.id, config.get('jwt.secret'), {expiresIn: '1d'})
-            if (err) return next(err);
+            const token = jwt.sign(user.id, config.get('jwt.secret'))
+            if (err) {
+                console.log(err)
+                next(err);
+            }
             return res.status(200).send({
                 code: 200,
                 message: "Login success",
