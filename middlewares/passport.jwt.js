@@ -10,6 +10,7 @@ opts.secretOrKey = config.get('jwt.secret')
 // opts.issuer = config.get('jwt.issuer')
 // opts.audience = config.get('jwt.audience')
 passport.use(new JwtStrategy(opts, (jwt_payload, cb) => {
+    console.log(jwt_payload)
     return userDB.findById(jwt_payload).then(user => {
         return cb(null, user);
     })

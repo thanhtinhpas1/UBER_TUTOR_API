@@ -1,6 +1,19 @@
 var express = require('express');
 var router = express.Router();
-const ExtractJwt = require('passport-jwt').ExtractJwt
+var meRouter = require('./me')
+const passport = require('passport')
+
+
+router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) => {
+  delete req.user['password']
+  res.status(200).send({
+    code: 200,
+    message: {
+      iat: (new Date()).getTime(),
+      ...req.user,
+    }
+  })
+})
 
 router.use('/user/', require(__dirname + '/user'))
 
