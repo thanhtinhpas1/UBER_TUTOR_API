@@ -19,7 +19,7 @@ module.exports = function (app) {
         pingTimeout: 30000
     })
 
-    io.set('origins', 'https://ptudwnc.herokuapp.com:80')
+    io.set('origins', 'https://ptudwnc.herokuapp.com')
 
     var rooms = []
 
