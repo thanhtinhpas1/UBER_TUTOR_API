@@ -19,6 +19,8 @@ module.exports = function (app) {
         pingTimeout: 30000
     })
 
+    io.set('origins', 'https://ptudwnc.herokuapp.com:80')
+
     var rooms = []
 
     server.listen(port, () => console.log('Server game is running in port ' + port))
