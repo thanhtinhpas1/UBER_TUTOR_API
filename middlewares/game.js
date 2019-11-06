@@ -12,12 +12,10 @@ const CLIENT_ASK_PEACE = "CLIENT_ASK_PEACE"
 const CLIENT_RES_PEACE = "CLIENT_RES_PEACE"
 
 module.exports = function (app) {
-    var server = require('http').Server(app)
     var port = config.get('game.port')
+    var server = app.listen(port)
 
-    var io = require('socket.io')(server, {
-        pingTimeout: 30000
-    })
+    var io = require('socket.io').listen(server)
 
     io.set('origins', 'https://ptudwnc.herokuapp.com')
 
