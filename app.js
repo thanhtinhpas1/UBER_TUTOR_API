@@ -21,7 +21,6 @@ app.use(allowCrossDomain)
 // use passport
 require('./middlewares/passport.local')(app)
 require('./middlewares/passport.jwt')
-require('./middlewares/game')(app)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

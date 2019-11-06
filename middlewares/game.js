@@ -11,18 +11,14 @@ const CLIENT_SURRENDER = "CLIENT_SURRENDER"
 const CLIENT_ASK_PEACE = "CLIENT_ASK_PEACE"
 const CLIENT_RES_PEACE = "CLIENT_RES_PEACE"
 
-module.exports = function (app) {
-    var server = require('http').Server(app)
-    var port = config.get('game.port')
+module.exports = function (server) {
 
     var io = require('socket.io')(server, {
-        pingTimeout: 30000
+        pingTimeout: 30000,
+        origins: 'https://ptudwnc.herokuapp.com'
     })
-    io.set('origins', 'https://ptudwnc.herokuapp.com')
 
     var rooms = []
-
-    server.listen(port, () => console.log('Server game is running in port ' + port))
 
     // have connect from client
     io.on('connection', socket => {
@@ -104,4 +100,3 @@ module.exports = function (app) {
 
     })
 }
-
