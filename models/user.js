@@ -47,6 +47,9 @@ module.exports = {
     findByUsername: userName => {
         return db.findOne('users', 'username', userName);
     },
+    findByFacebookId: id => {
+        return db.findOne('users', 'facebook_id', id)
+    },
     getAllUser: getAllUser,
     deleteUser: deleteUser,
     addNewUser: addNewUser,
