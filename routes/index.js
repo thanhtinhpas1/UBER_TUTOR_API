@@ -15,40 +15,6 @@ router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) =
   })
 })
 
-router.post('/user/update-profile', passport.authenticate('jwt', { session: false }), (req, res) => {
-  var user = req.body
-  console.log(user)
-  var username = user.username
-  if (username) {
-    userDB.findByUsername(username).then(value => {
-      if (value) {
-        value.name = user.name
-        value.email = user.email
-        value.password = util.hash_password(user.password)
-        userDB.updateUser(value).then(rs => {
-          res.status(200).json({
-            code: 200,
-            message: 'Update user success'
-          })
-        }).catch(err => {
-          console.error(err)
-          throw err
-        })
-      }
-    }).catch(err => {
-      console.error(err)
-      throw error
-    })
-  }
-  else {
-    res.status(400).json({
-      code: 400,
-      status: "Bad request"
-    })
-  }
-
-})
-
 router.use('/user/', require(__dirname + '/user'))
 
 router.post('/logout', (req, res) => {

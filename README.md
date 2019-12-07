@@ -1,4 +1,4 @@
-# API for tic tac toe game
+# API for Uber tutor Application
 
 ** HCMUS ** `Develop web application advance `
 
